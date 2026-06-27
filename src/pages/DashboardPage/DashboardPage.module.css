@@ -1,0 +1,253 @@
+/* ─── Layout ─────────────────────────────────────────── */
+.page {
+  min-height: 100vh;
+  background: #f4f7f5;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Nav ────────────────────────────────────────────── */
+.nav {
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0 2rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navBrand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logoIcon {
+  width: 32px;
+  height: 32px;
+  background: #0C3B2E;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.logoText {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0C3B2E;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.teacherName {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.logoutBtn {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #0C3B2E;
+  background: none;
+  border: 1px solid #c5d8c9;
+  border-radius: 6px;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.logoutBtn:hover {
+  background: #f0f5f1;
+}
+
+/* ─── Main ───────────────────────────────────────────── */
+.main {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+/* ─── Page header ────────────────────────────────────── */
+.pageHeader {
+  margin-bottom: 1.75rem;
+}
+
+.pageTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0C3B2E;
+  margin: 0 0 0.3rem;
+}
+
+.pageSubtitle {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* ─── Course grid ────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+/* ─── Course Card ────────────────────────────────────── */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  cursor: pointer;
+  text-align: left;
+  transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
+  width: 100%;
+}
+
+.card:hover {
+  box-shadow: 0 4px 20px rgba(12, 59, 46, 0.1);
+  border-color: #a8c8b0;
+  transform: translateY(-2px);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.courseInitial {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: #BB8A52;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cardTitle {
+  flex: 1;
+  min-width: 0;
+}
+
+.courseName {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.courseDesc {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin: 0.2rem 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.teamCount {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #9ca3af;
+  white-space: nowrap;
+  flex-shrink: 0;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 0.2rem 0.55rem;
+}
+
+/* ─── Date row ───────────────────────────────────────── */
+.dateRow {
+  display: flex;
+}
+
+.dateChip {
+  font-size: 0.78rem;
+  color: #6b7280;
+  background: #f3f4f6;
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
+}
+
+/* ─── Card footer ────────────────────────────────────── */
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+  border-top: 1px solid #f3f4f6;
+}
+
+.cardArrow {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #0C3B2E;
+}
+
+.createdAt {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+/* ─── States ─────────────────────────────────────────── */
+.stateWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+  gap: 0.75rem;
+}
+
+.stateText {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #0C3B2E;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.errorBox {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 0.875rem 1rem;
+  color: #b91c1c;
+  font-size: 0.875rem;
+}
