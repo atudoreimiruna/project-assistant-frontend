@@ -7,6 +7,7 @@ import { ForgotPasswordPage } from './pages/ForgotPasswordPage/ForgotPasswordPag
 import { ResetPasswordPage } from './pages/ResetPasswordPage/ResetPasswordPage';
 import { DashboardPage } from './pages/DashboardPage/DashboardPage';
 import { CoursePage } from './pages/CoursePage/CoursePage';
+import { TeamPage } from './pages/TeamPage/TeamPage';
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/courses/:id" element={<CoursePage />} />
+            <Route path="/teams/:id" element={<TeamPage />} />
           </Route>
 
           {/* Fallback */}

@@ -1,0 +1,283 @@
+/* ─── Overlay ──────────────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 1rem;
+}
+
+/* ─── Modal shell ──────────────────────────────────────── */
+.modal {
+  background: #fff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 520px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+}
+
+/* ─── Header ───────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1.25rem 1.25rem 0.75rem;
+  border-bottom: 1px solid #f3f4f6;
+  flex-shrink: 0;
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 0.15rem 0.3rem;
+  line-height: 1;
+}
+
+.closeBtn:hover { color: #374151; }
+
+/* ─── Sections ─────────────────────────────────────────── */
+.section {
+  padding: 0.75rem 1.25rem;
+  overflow-y: auto;
+  flex: 1 1 auto;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.sectionLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #9ca3af;
+}
+
+.toggleAll {
+  background: none;
+  border: none;
+  font-size: 0.78rem;
+  color: #0C3B2E;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0;
+}
+
+.toggleAll:hover { text-decoration: underline; }
+
+/* ─── List ─────────────────────────────────────────────── */
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.item {
+  border-radius: 8px;
+  border: 1px solid #f3f4f6;
+  background: #fafafa;
+  transition: background 0.1s;
+}
+
+.item:not(.itemMuted):hover { background: #f0fdf4; }
+
+.itemLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.itemMuted {
+  opacity: 0.65;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+}
+
+/* ─── Checkbox ─────────────────────────────────────────── */
+.checkbox {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  accent-color: #0C3B2E;
+  cursor: pointer;
+}
+
+/* ─── Avatar ───────────────────────────────────────────── */
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #6D9773;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.avatarMuted {
+  background: #d1d5db;
+}
+
+/* ─── Info ─────────────────────────────────────────────── */
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #111827;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.email {
+  font-size: 0.75rem;
+  color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.github {
+  font-size: 0.72rem;
+  color: #9ca3af;
+}
+
+/* ─── Badges ───────────────────────────────────────────── */
+.warnBadge {
+  font-size: 0.7rem;
+  color: #b45309;
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+  border-radius: 4px;
+  padding: 0.15rem 0.45rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.memberBadge {
+  font-size: 0.7rem;
+  color: #047857;
+  background: #d1fae5;
+  border: 1px solid #a7f3d0;
+  border-radius: 4px;
+  padding: 0.15rem 0.45rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ─── Already-members collapsible ─────────────────────── */
+.alreadySection {
+  border-top: 1px solid #f3f4f6;
+  padding: 0.6rem 1.25rem;
+  flex-shrink: 0;
+}
+
+.alreadySummary {
+  font-size: 0.78rem;
+  color: #6b7280;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+}
+
+.alreadySummary::-webkit-details-marker { display: none; }
+.alreadySummary::before { content: '▸ '; }
+details[open] .alreadySummary::before { content: '▾ '; }
+
+/* ─── Empty state ──────────────────────────────────────── */
+.emptyNew {
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+/* ─── Footer ───────────────────────────────────────────── */
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  padding: 0.9rem 1.25rem;
+  border-top: 1px solid #f3f4f6;
+  flex-shrink: 0;
+}
+
+.cancelBtn {
+  padding: 0.5rem 1rem;
+  border-radius: 7px;
+  border: 1.5px solid #e5e7eb;
+  background: none;
+  color: #374151;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cancelBtn:hover:not(:disabled) { background: #f9fafb; }
+.cancelBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.confirmBtn {
+  padding: 0.5rem 1.25rem;
+  border-radius: 7px;
+  border: none;
+  background: #0C3B2E;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.confirmBtn:hover:not(:disabled) { background: #0a3228; }
+.confirmBtn:disabled { opacity: 0.5; cursor: not-allowed; }

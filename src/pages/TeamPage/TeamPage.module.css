@@ -1,0 +1,1090 @@
+/* ─── Layout ─────────────────────────────────────────── */
+.page {
+  min-height: 100vh;
+  background: #f4f7f5;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Nav ────────────────────────────────────────────── */
+.nav {
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0 2rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navBrand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logoIcon {
+  width: 32px;
+  height: 32px;
+  background: #0C3B2E;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.logoText {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0C3B2E;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.teacherName {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.logoutBtn {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #0C3B2E;
+  background: none;
+  border: 1px solid #c5d8c9;
+  border-radius: 6px;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.logoutBtn:hover {
+  background: #f0f5f1;
+}
+
+/* ─── Main ───────────────────────────────────────────── */
+.main {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 3rem;
+}
+
+/* ─── Breadcrumb ─────────────────────────────────────── */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+}
+
+.breadcrumbBack {
+  background: none;
+  border: none;
+  color: #0C3B2E;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+}
+
+.breadcrumbBack:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbSep {
+  color: #d1d5db;
+}
+
+.breadcrumbCurrent {
+  color: #6b7280;
+}
+
+/* ─── Page header ────────────────────────────────────── */
+.pageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.teamInitial {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: #BB8A52;
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.teamNameRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.teamName {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0C3B2E;
+  margin: 0;
+}
+
+.repoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  color: #6b7280;
+  text-decoration: none;
+  margin-top: 0.3rem;
+}
+
+.repoLink:hover {
+  color: #0C3B2E;
+  text-decoration: underline;
+}
+
+.noRepo {
+  font-size: 0.8rem;
+  color: #d1d5db;
+  margin-top: 0.3rem;
+  display: block;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.syncBtn {
+  background: #0C3B2E;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.45rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.syncBtn:hover:not(:disabled) {
+  background: #0a2e23;
+}
+
+.syncBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.syncMsg {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* ─── Status badge ───────────────────────────────────── */
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.statusOnTrack { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+.statusOnTrack .statusDot { background: #16a34a; }
+
+.statusAtRisk { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
+.statusAtRisk .statusDot { background: #d97706; }
+
+.statusBlocked { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+.statusBlocked .statusDot { background: #dc2626; }
+
+/* ─── Stats row ──────────────────────────────────────── */
+.statsRow {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.statCard {
+  flex: 1;
+  min-width: 100px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.statValue {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #0C3B2E;
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ─── Two-col grid ───────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ─── Section ────────────────────────────────────────── */
+.section {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.sectionTitle {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #0C3B2E;
+  margin: 0 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sectionBadge {
+  background: #f3f4f6;
+  color: #6b7280;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.15rem 0.45rem;
+  border-radius: 99px;
+}
+
+.reportAge {
+  margin-left: auto;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: #9ca3af;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ─── Activity Chart ─────────────────────────────────── */
+.chart {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ─── Members Table ──────────────────────────────────── */
+.tableWrap {
+  overflow-x: auto;
+}
+
+.tableSortRow {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.tableSortLabel {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.sortBtn {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  border: 1.5px solid #e5e7eb;
+  background: #fff;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.sortBtn:hover {
+  border-color: #0C3B2E;
+  color: #0C3B2E;
+}
+
+.sortActive {
+  background: #FFBA00;
+  border-color: #FFBA00;
+  color: #0C3B2E !important;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.th {
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.4rem 0.75rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.tr {
+  transition: background 0.1s;
+}
+
+.tr:hover {
+  background: #f9fafb;
+}
+
+.trTop {
+  background: #fffbf0;
+}
+
+.trTop:hover {
+  background: #fff8e5;
+}
+
+.td {
+  padding: 0.65rem 0.75rem;
+  color: #374151;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: middle;
+}
+
+.tdRank {
+  padding: 0.65rem 0.5rem 0.65rem 0.75rem;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.tdNum {
+  padding: 0.65rem 0.75rem;
+  color: #374151;
+  border-bottom: 1px solid #f3f4f6;
+  font-weight: 600;
+  text-align: right;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.tdScore {
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: middle;
+  min-width: 120px;
+}
+
+.memberCell {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.memberAvatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #BB8A52;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.memberName {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.memberEmail {
+  font-size: 0.72rem;
+  color: #9ca3af;
+}
+
+.memberGithub {
+  font-size: 0.72rem;
+  color: #6b7280;
+}
+
+.scoreRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.scoreBar {
+  flex: 1;
+  height: 6px;
+  background: #f3f4f6;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.scoreFill {
+  height: 100%;
+  background: #6D9773;
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+
+.scoreNum {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #374151;
+  white-space: nowrap;
+}
+
+/* ─── Simple members list (no report) ───────────────── */
+.simpleMembers {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.simpleMember {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.simpleMember:last-child {
+  border-bottom: none;
+}
+
+/* ─── AI Report ──────────────────────────────────────── */
+.summary {
+  font-size: 0.825rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 0 0 1rem;
+  padding: 0.75rem;
+  background: #f9fafb;
+  border-radius: 6px;
+  border-left: 3px solid #6D9773;
+}
+
+.concerns {
+  margin-bottom: 0.75rem;
+}
+
+.concernsTitle {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #d97706;
+  margin-bottom: 0.4rem;
+}
+
+.recommendations {
+  margin-top: 0.25rem;
+}
+
+.recsTitle {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #2563eb;
+  margin-bottom: 0.4rem;
+}
+
+.bulletList {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.bulletList li {
+  font-size: 0.8rem;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+/* ─── Milestones ─────────────────────────────────────── */
+.milestoneMacroBar {
+  height: 6px;
+  background: #f3f4f6;
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 0.85rem;
+}
+
+.milestoneMacroFill {
+  height: 100%;
+  background: #6D9773;
+  border-radius: 99px;
+  transition: width 0.5s ease;
+}
+
+.milestoneList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.milestoneItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.7rem;
+  border-radius: 8px;
+  background: #f9fafb;
+  border: 1px solid #f3f4f6;
+}
+
+.milestoneComplete {
+  background: #f0fdf4;
+  border-color: #d1fae5;
+}
+
+.milestoneOverdue {
+  background: #fef2f2;
+  border-color: #fee2e2;
+}
+
+.milestoneCheck {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  background: #e5e7eb;
+  color: #6b7280;
+  margin-top: 0.05rem;
+}
+
+.milestoneComplete .milestoneCheck {
+  background: #d1fae5;
+  color: #16a34a;
+}
+
+.milestoneOverdue .milestoneCheck {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.milestoneBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.milestoneTitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.milestoneComplete .milestoneTitle {
+  color: #6b7280;
+  text-decoration: line-through;
+}
+
+.milestoneDesc {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 0.2rem;
+  line-height: 1.4;
+}
+
+.milestoneMeta {
+  font-size: 0.72rem;
+  color: #9ca3af;
+  margin-top: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.completedTag {
+  background: #d1fae5;
+  color: #16a34a;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.overdueTag {
+  background: #fee2e2;
+  color: #dc2626;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+/* ─── Meta details list ──────────────────────────────── */
+.metaList {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1rem;
+  font-size: 0.825rem;
+  margin: 0;
+}
+
+.metaList dt {
+  color: #9ca3af;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.metaList dd {
+  color: #374151;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* ─── States ─────────────────────────────────────────── */
+.stateWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+  gap: 0.75rem;
+}
+
+.stateText {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #0C3B2E;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.errorBox {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 0.875rem 1rem;
+  color: #b91c1c;
+  font-size: 0.875rem;
+}
+
+.emptyText {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin: 0;
+}
+
+/* ─── Section header row (title + action) ────────────── */
+.sectionHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.sectionHeaderRow .sectionTitle {
+  margin-bottom: 0;
+}
+
+/* ─── Add member toggle button ───────────────────────── */
+.addMemberToggle {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #0C3B2E;
+  background: none;
+  border: 1.5px solid #c5d8c9;
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+  white-space: nowrap;
+}
+
+.addMemberToggle:hover {
+  background: #f0f5f1;
+  border-color: #0C3B2E;
+}
+
+/* ─── Add member form ────────────────────────────────── */
+.addForm {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.addFormRow {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.addInput {
+  flex: 1;
+  min-width: 120px;
+  padding: 0.4rem 0.65rem;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: #111827;
+  background: #fff;
+  transition: border-color 0.12s;
+}
+
+.addInput:focus {
+  outline: none;
+  border-color: #0C3B2E;
+}
+
+.addSubmitBtn {
+  background: #0C3B2E;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.12s;
+  white-space: nowrap;
+}
+
+.addSubmitBtn:hover:not(:disabled) {
+  background: #0a2e23;
+}
+
+.addSubmitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.addErr {
+  font-size: 0.78rem;
+  color: #b91c1c;
+  margin: 0.5rem 0 0;
+}
+
+/* ─── Remove button ──────────────────────────────────── */
+.tdAction {
+  padding: 0.65rem 0.5rem 0.65rem 0.25rem;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: middle;
+  width: 32px;
+}
+
+.removeBtn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid #e5e7eb;
+  background: none;
+  color: #9ca3af;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+  flex-shrink: 0;
+}
+
+.removeBtn:hover:not(:disabled) {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #dc2626;
+}
+
+.removeBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ─── Delete team button ─────────────────────────────── */
+.deleteTeamBtn {
+  padding: 0.45rem 1rem;
+  border-radius: 6px;
+  border: 1.5px solid #fecaca;
+  background: none;
+  color: #dc2626;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+  white-space: nowrap;
+}
+
+.deleteTeamBtn:hover:not(:disabled) {
+  background: #fef2f2;
+}
+
+.deleteTeamBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ─── Integrations panel ─────────────────────────────── */
+.integrationCard {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.integrationCard + .integrationCard {
+  margin-top: 0.75rem;
+}
+
+.integrationHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.integrationIcon {
+  width: 16px;
+  height: 16px;
+  color: #374151;
+  flex-shrink: 0;
+}
+
+.integrationName {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.integrationConnected {
+  margin-left: auto;
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+  padding: 0.1rem 0.45rem;
+  border-radius: 99px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.integrationHint {
+  font-size: 0.775rem;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.integrationRow {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.integrationInput {
+  flex: 1;
+  min-width: 0;
+  padding: 0.4rem 0.65rem;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  color: #111827;
+  background: #fff;
+  transition: border-color 0.12s;
+}
+
+.integrationInput:focus {
+  outline: none;
+  border-color: #0C3B2E;
+}
+
+.integrationBtn {
+  background: #0C3B2E;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.12s, opacity 0.12s;
+}
+
+.integrationBtn:hover:not(:disabled) {
+  background: #0a2e23;
+}
+
+.integrationBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.integrationBtnOk {
+  background: #16a34a;
+}
+
+.integrationBtnOk:hover:not(:disabled) {
+  background: #15803d;
+}
+
+.integrationBtnErr {
+  background: #dc2626;
+}
+
+.integrationLinked {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.integrationLinked a {
+  color: #0C3B2E;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 200px;
+}
+
+.integrationLinked a:hover {
+  text-decoration: underline;
+}
+
+.reSyncBtn {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #0C3B2E;
+  background: none;
+  border: 1px solid #c5d8c9;
+  border-radius: 6px;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.12s;
+  flex-shrink: 0;
+}
+
+.reSyncBtn:hover:not(:disabled) {
+  background: #f0f5f1;
+}
+
+.reSyncBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.integrationMsg {
+  font-size: 0.775rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* ─── GitHub link in member row ───────────────────────── */
+.memberGithub {
+  font-size: 0.72rem;
+  color: #0C3B2E;
+  text-decoration: none;
+  display: block;
+}
+
+.memberGithub:hover {
+  text-decoration: underline;
+}
