@@ -571,6 +571,27 @@ export function TeamPage() {
     source: 'github' | 'drive';
     contributors: ContributorPreview[];
   } | null>(null);
+  const [askQuery, setAskQuery] = useState('');
+  const [askAnswer, setAskAnswer] = useState('');
+  const [isAsking, setIsAsking] = useState(false);
+  const [askError, setAskError] = useState('');
+
+  async function handleAsk(query?: string) {
+    const q = (query ?? askQuery).trim();
+    if (!q || !id) return;
+    if (query) setAskQuery(query);
+    setIsAsking(true);
+    setAskAnswer('');
+    setAskError('');
+    try {
+      const { answer } = await teamsApi.ask(id, q);
+      setAskAnswer(answer);
+    } catch {
+      setAskError('Failed to get an answer. Try again.');
+    } finally {
+      setIsAsking(false);
+    }
+  }
 
   const load = useCallback(async () => {
     if (!id) return;
@@ -778,6 +799,39 @@ export function TeamPage() {
                     <ActivityChart logs={activity} />
                   ) : (
                     <p className={styles.emptyText}>No activity logged yet.</p>
+                  )}
+                </section>
+
+                {/* Ask AI */}
+                <section className={styles.section}>
+                  <h2 className={styles.sectionTitle}>Ask about this team</h2>
+                  <p className={styles.askSubtitle}>Ask anything about this team's activity, students or milestones.</p>
+                  <form className={styles.askRow} onSubmit={(e) => { e.preventDefault(); handleAsk(); }}>
+                    <input
+                      className={styles.askInput}
+                      type="text"
+                      placeholder="Who contributed the most this week?"
+                      value={askQuery}
+                      onChange={(e) => setAskQuery(e.target.value)}
+                      disabled={isAsking}
+                    />
+                    <button className={styles.askBtn} type="submit" disabled={isAsking || !askQuery.trim()}>
+                      {isAsking ? '…' : 'Ask'}
+                    </button>
+                  </form>
+                  <div className={styles.askChips}>
+                    {['When was the last commit?', 'Is anyone not contributing?', 'Which milestones are overdue?', 'What should the team focus on?'].map((q) => (
+                      <button key={q} className={styles.askChip} onClick={() => handleAsk(q)} disabled={isAsking}>
+                        {q}
+                      </button>
+                    ))}
+                  </div>
+                  {askError && <p className={styles.askError}>{askError}</p>}
+                  {askAnswer && (
+                    <div className={styles.askAnswer}>
+                      <div className={styles.askAnswerLabel}>AI answer</div>
+                      <p className={styles.askAnswerText}>{askAnswer}</p>
+                    </div>
                   )}
                 </section>
               </div>

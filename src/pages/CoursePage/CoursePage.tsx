@@ -492,12 +492,14 @@ export function CoursePage() {
                     <p className={styles.pageSubtitle}>{course.description}</p>
                   )}
                 </div>
-                <button
-                  className={styles.newTeamBtn}
-                  onClick={() => setShowCreateModal(true)}
-                >
-                  + New Team
-                </button>
+                {teams.length > 0 && (
+                  <button
+                    className={styles.newTeamBtn}
+                    onClick={() => setShowCreateModal(true)}
+                  >
+                    + New Team
+                  </button>
+                )}
               </div>
             </div>
 

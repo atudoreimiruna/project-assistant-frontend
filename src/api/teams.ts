@@ -100,4 +100,6 @@ export const teamsApi = {
     api.post<Student>(`/teams/${teamId}/students`, payload),
   removeStudent: (teamId: string, studentId: string) =>
     api.delete<void>(`/teams/${teamId}/students/${studentId}`),
+  ask: (teamId: string, query: string) =>
+    api.post<{ answer: string }>(`/teams/${teamId}/ask`, { query }),
 };

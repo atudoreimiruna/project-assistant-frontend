@@ -542,6 +542,117 @@
   border-left: 3px solid #6D9773;
 }
 
+/* ─── Ask AI section ─────────────────────────────────── */
+.askSubtitle {
+  font-size: 0.78rem;
+  color: #9ca3af;
+  margin: -6px 0 12px;
+}
+
+.askRow {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.askInput {
+  flex: 1;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.825rem;
+  color: #111827;
+  background: #fff;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.15s;
+}
+
+.askInput:focus {
+  border-color: #0C3B2E;
+}
+
+.askBtn {
+  background: #0C3B2E;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 0.825rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.askBtn:hover:not(:disabled) {
+  background: #0f4d3c;
+}
+
+.askBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.askChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.askChip {
+  background: #f0f5f1;
+  border: 1px solid #c5d8c9;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  color: #0C3B2E;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-family: inherit;
+}
+
+.askChip:hover:not(:disabled) {
+  background: #dceee2;
+}
+
+.askChip:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.askAnswer {
+  background: #f0f5f1;
+  border-left: 3px solid #0C3B2E;
+  padding: 10px 14px;
+  border-radius: 0;
+  margin-top: 4px;
+}
+
+.askAnswerLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #0C3B2E;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.askAnswerText {
+  font-size: 0.825rem;
+  color: #1f2937;
+  line-height: 1.65;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.askError {
+  font-size: 0.8rem;
+  color: #b91c1c;
+  margin: 4px 0 0;
+}
+
 .concerns {
   margin-bottom: 0.75rem;
 }

@@ -83,6 +83,10 @@
 /* ─── Page header ────────────────────────────────────── */
 .pageHeader {
   margin-bottom: 1.75rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .pageTitle {
@@ -96,6 +100,80 @@
   font-size: 0.875rem;
   color: #6b7280;
   margin: 0;
+}
+
+/* ─── Filters ────────────────────────────────────────── */
+.filtersBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.filters {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filterControls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filterSelect {
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #6b7280;
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s, color 0.15s;
+  appearance: none;
+  padding-right: 1.75rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.6rem center;
+}
+
+.filterSelect:hover,
+.filterSelect:focus {
+  border-color: #a8c8b0;
+  color: #0C3B2E;
+}
+
+.filterBtn {
+  background: none;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.filterBtn:hover {
+  background: #f0f5f1;
+  border-color: #a8c8b0;
+  color: #0C3B2E;
+}
+
+.filterActive {
+  background: #0C3B2E;
+  border-color: #0C3B2E;
+  color: #fff;
+}
+
+.filterActive:hover {
+  background: #0f4d3c;
+  border-color: #0f4d3c;
+  color: #fff;
 }
 
 /* ─── Course grid ────────────────────────────────────── */
@@ -250,4 +328,178 @@
   padding: 0.875rem 1rem;
   color: #b91c1c;
   font-size: 0.875rem;
+}
+
+/* ─── New course button ──────────────────────────────── */
+.newCourseBtn {
+  flex-shrink: 0;
+  background: #0C3B2E;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.newCourseBtn:hover {
+  background: #0f4d3c;
+}
+
+/* ─── Modal overlay ──────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem 0;
+}
+
+.modalTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0C3B2E;
+  margin: 0;
+}
+
+.modalClose {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 0;
+}
+
+.modalClose:hover {
+  color: #374151;
+}
+
+/* ─── Modal form ─────────────────────────────────────── */
+.modalForm {
+  padding: 1.25rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.875rem;
+  color: #111827;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.15s;
+  font-family: inherit;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: #0C3B2E;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 72px;
+}
+
+.dateRow2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.formError {
+  font-size: 0.8rem;
+  color: #b91c1c;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  margin: 0;
+}
+
+/* ─── Modal actions ──────────────────────────────────── */
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  padding-top: 0.25rem;
+}
+
+.cancelBtn {
+  background: none;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  color: #374151;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.cancelBtn:hover:not(:disabled) {
+  background: #f9fafb;
+}
+
+.submitBtn {
+  background: #0C3B2E;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: #0f4d3c;
+}
+
+.submitBtn:disabled,
+.cancelBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
 }
