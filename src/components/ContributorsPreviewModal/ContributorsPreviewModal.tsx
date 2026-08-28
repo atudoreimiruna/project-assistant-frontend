@@ -10,19 +10,29 @@ interface Props {
 }
 
 export function ContributorsPreviewModal({ source, contributors, onConfirm, onClose }: Props) {
-  // Pre-select everyone who isn't already a member
-  const [checked, setChecked] = useState<Set<string>>(
-    new Set(contributors.filter((c) => !c.alreadyMember).map((c) => c.email)),
-  );
-  const [importing, setImporting] = useState(false);
-
   const newContributors = contributors.filter((c) => !c.alreadyMember);
   const alreadyMembers = contributors.filter((c) => c.alreadyMember);
 
-  function toggle(email: string) {
+  // Keyed by GitHub username (falling back to email) rather than email alone,
+  // since a flagged placeholder email can be edited in place before import —
+  // keying on the very value that's being edited would break selection.
+  const keyFor = (c: ContributorPreview) => c.githubUsername ?? c.email;
+
+  // Pre-select everyone who isn't already a member
+  const [checked, setChecked] = useState<Set<string>>(
+    new Set(newContributors.map(keyFor)),
+  );
+  // Emails the professor edited in place, keyed the same way. Only populated
+  // for rows actually changed — everything else keeps its original c.email.
+  const [emailEdits, setEmailEdits] = useState<Record<string, string>>({});
+  const [importing, setImporting] = useState(false);
+  const [importError, setImportError] = useState('');
+
+  function toggle(key: string) {
     setChecked((prev) => {
       const next = new Set(prev);
-      next.has(email) ? next.delete(email) : next.add(email);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
       return next;
     });
   }
@@ -31,16 +41,27 @@ export function ContributorsPreviewModal({ source, contributors, onConfirm, onCl
     if (checked.size === newContributors.length) {
       setChecked(new Set());
     } else {
-      setChecked(new Set(newContributors.map((c) => c.email)));
+      setChecked(new Set(newContributors.map(keyFor)));
     }
   }
 
+  function emailFor(c: ContributorPreview): string {
+    return emailEdits[keyFor(c)] ?? c.email;
+  }
+
   async function handleConfirm() {
-    const selected = contributors.filter((c) => !c.alreadyMember && checked.has(c.email));
+    const selected = newContributors
+      .filter((c) => checked.has(keyFor(c)))
+      .map((c) => ({ ...c, email: emailFor(c).trim() }));
     if (selected.length === 0) { onClose(); return; }
     setImporting(true);
+    setImportError('');
     try {
       await onConfirm(selected);
+    } catch {
+      // Without this the rejection escapes the click handler and the modal
+      // just sits there with no explanation.
+      setImportError('Could not add the selected members. Please try again.');
     } finally {
       setImporting(false);
     }
@@ -77,31 +98,55 @@ export function ContributorsPreviewModal({ source, contributors, onConfirm, onCl
               </button>
             </div>
             <ul className={styles.list}>
-              {newContributors.map((c) => (
-                <li key={c.email} className={styles.item}>
-                  <label className={styles.itemLabel}>
-                    <input
-                      type="checkbox"
-                      className={styles.checkbox}
-                      checked={checked.has(c.email)}
-                      onChange={() => toggle(c.email)}
-                    />
-                    <div className={styles.avatar}>{c.name.charAt(0).toUpperCase()}</div>
-                    <div className={styles.info}>
-                      <span className={styles.name}>{c.name}</span>
-                      <span className={styles.email}>{c.email}</span>
-                      {c.githubUsername && (
-                        <span className={styles.github}>@{c.githubUsername}</span>
+              {newContributors.map((c) => {
+                const key = keyFor(c);
+                const flagged = !c.hasRealEmail;
+                return (
+                  <li key={key} className={styles.item}>
+                    <label className={styles.itemLabel}>
+                      <input
+                        type="checkbox"
+                        className={styles.checkbox}
+                        checked={checked.has(key)}
+                        onChange={() => toggle(key)}
+                      />
+                      <div className={styles.avatar}>{c.name.charAt(0).toUpperCase()}</div>
+                      <div className={styles.info}>
+                        <span className={styles.name}>{c.name}</span>
+                        {flagged ? (
+                          <input
+                            type="email"
+                            className={styles.emailInput}
+                            value={emailFor(c)}
+                            placeholder="Enter a real email address"
+                            onChange={(e) =>
+                              setEmailEdits((prev) => ({ ...prev, [key]: e.target.value }))
+                            }
+                          />
+                        ) : (
+                          <span className={styles.email}>{c.email}</span>
+                        )}
+                        {c.githubUsername && (
+                          <span className={styles.github}>@{c.githubUsername}</span>
+                        )}
+                      </div>
+                      {flagged && (
+                        <span
+                          className={styles.warnBadge}
+                          title="GitHub doesn't expose a public email for this account — please verify or enter a real one"
+                        >
+                          ⚠ no public email
+                        </span>
                       )}
-                    </div>
-                    {c.possibleDuplicate && (
-                      <span className={styles.warnBadge} title={`May match existing member "${c.possibleDuplicate}"`}>
-                        ⚠ possible duplicate
-                      </span>
-                    )}
-                  </label>
-                </li>
-              ))}
+                      {c.possibleDuplicate && (
+                        <span className={styles.warnBadge} title={`May match existing member "${c.possibleDuplicate}"`}>
+                          ⚠ possible duplicate
+                        </span>
+                      )}
+                    </label>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         ) : (
@@ -132,6 +177,8 @@ export function ContributorsPreviewModal({ source, contributors, onConfirm, onCl
         )}
 
         {/* Footer */}
+        {importError && <p className={styles.importError}>{importError}</p>}
+
         <div className={styles.footer}>
           <button className={styles.cancelBtn} onClick={onClose} disabled={importing}>
             Cancel

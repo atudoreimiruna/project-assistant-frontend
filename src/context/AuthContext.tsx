@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from 'react';
 import { authApi, type AuthResponse, type LoginPayload, type RegisterPayload } from '../api/auth';
+import { setUnauthorizedHandler } from '../api/client';
 
 interface Teacher {
   id: string;
@@ -83,6 +84,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem('token');
     setTeacher(null);
   }, []);
+
+  // A 401 from any request means the token is gone or expired: tear the session
+  // down here so ProtectedRoute redirects, rather than a hard page reload.
+  useEffect(() => {
+    setUnauthorizedHandler(logout);
+    return () => setUnauthorizedHandler(null);
+  }, [logout]);
 
   const value = useMemo<AuthContextValue>(
     () => ({

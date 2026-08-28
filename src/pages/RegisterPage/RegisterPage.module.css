@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f4f7f5;
+  background: #F8FAFC;
 }
 
 .card {
@@ -25,7 +25,7 @@
 .logoIcon {
   width: 36px;
   height: 36px;
-  background: #0C3B2E;
+  background: #1A2B3C;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -38,13 +38,13 @@
 .logoText {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #0C3B2E;
+  color: #1A2B3C;
 }
 
 h1.title {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #0C3B2E;
+  color: #1A2B3C;
   margin: 0 0 0.25rem;
 }
 
@@ -83,7 +83,7 @@ h1.title {
 }
 
 .input:focus {
-  border-color: #0C3B2E;
+  border-color: #1A2B3C;
 }
 
 .input.error {
@@ -107,7 +107,7 @@ h1.title {
 .submitBtn {
   margin-top: 0.5rem;
   padding: 0.7rem;
-  background: #0C3B2E;
+  background: #1A2B3C;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -118,7 +118,7 @@ h1.title {
 }
 
 .submitBtn:hover:not(:disabled) {
-  background: #164d3a;
+  background: #1e3145;
 }
 
 .submitBtn:disabled {
@@ -134,7 +134,7 @@ h1.title {
 }
 
 .link {
-  color: #0C3B2E;
+  color: #1A2B3C;
   font-weight: 600;
   text-decoration: none;
 }

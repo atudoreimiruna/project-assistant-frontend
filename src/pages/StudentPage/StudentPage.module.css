@@ -1,0 +1,574 @@
+/* ─── Layout ─────────────────────────────────────────── */
+.page {
+  min-height: 100vh;
+  background: #F8FAFC;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Nav ────────────────────────────────────────────── */
+.nav {
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0 2rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navBrand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logoIcon {
+  width: 32px;
+  height: 32px;
+  background: #1A2B3C;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.logoText {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1A2B3C;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.teacherName {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.logoutBtn {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #1A2B3C;
+  background: none;
+  border: 1px solid #c7cdd6;
+  border-radius: 6px;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.logoutBtn:hover {
+  background: #f0f2f5;
+}
+
+/* ─── Main ───────────────────────────────────────────── */
+.main {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 3rem;
+}
+
+/* ─── Breadcrumb ─────────────────────────────────────── */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.breadcrumbBack {
+  background: none;
+  border: none;
+  color: #1A2B3C;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+}
+
+.breadcrumbBack:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbSep {
+  color: #d1d5db;
+}
+
+.breadcrumbCurrent {
+  color: #6b7280;
+}
+
+.inlineLink {
+  color: #1A2B3C;
+  font-weight: 600;
+}
+
+/* ─── States ─────────────────────────────────────────── */
+.stateWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+  gap: 0.75rem;
+}
+
+.stateText {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #1A2B3C;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.errorBox {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 0.875rem 1rem;
+  color: #b91c1c;
+  font-size: 0.875rem;
+}
+
+.emptyText {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin: 0;
+}
+
+/* ─── Profile card ───────────────────────────────────── */
+.profileCard {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.profileTop {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.avatarCircle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #38260B;
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.profileInfo {
+  flex: 1;
+  min-width: 220px;
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.studentName {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1A2B3C;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin: 0.25rem 0 0.75rem;
+}
+
+.contactRow {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.contactItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: #6b7280;
+  text-decoration: none;
+}
+
+.contactItem:hover {
+  color: #1A2B3C;
+  text-decoration: underline;
+}
+
+.profileActions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.emailBtn {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1A2B3C;
+  background: none;
+  border: 1.5px solid #c7cdd6;
+  border-radius: 6px;
+  padding: 0.4rem 0.85rem;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.12s, border-color 0.12s;
+}
+
+.emailBtn:hover {
+  background: #f0f2f5;
+  border-color: #1A2B3C;
+}
+
+.removeStudentBtn {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #dc2626;
+  background: none;
+  border: 1.5px solid #fecaca;
+  border-radius: 6px;
+  padding: 0.4rem 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.12s;
+}
+
+.removeStudentBtn:hover:not(:disabled) {
+  background: #fef2f2;
+}
+
+.removeStudentBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ─── Status badge ───────────────────────────────────── */
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.statusOnTrack { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+.statusOnTrack .statusDot { background: #16a34a; }
+
+.statusAtRisk { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
+.statusAtRisk .statusDot { background: #d97706; }
+
+.statusBlocked { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+.statusBlocked .statusDot { background: #dc2626; }
+
+/* ─── Two-col grid ───────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ─── Section ────────────────────────────────────────── */
+.section {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.sectionTitle {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1A2B3C;
+  margin: 0 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sectionHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.1rem;
+}
+
+.sectionHeaderRow .sectionTitle {
+  margin-bottom: 0;
+}
+
+/* ─── Refresh activity button ────────────────────────── */
+.refreshActivityWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.lastRefreshedText {
+  font-size: 0.72rem;
+  color: #9ca3af;
+  white-space: nowrap;
+}
+
+.refreshActivityBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1A2B3C;
+  background: none;
+  border: 1.5px solid #c7cdd6;
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+  white-space: nowrap;
+}
+
+.refreshActivityBtn:hover:not(:disabled) {
+  background: #f0f2f5;
+  border-color: #1A2B3C;
+}
+
+.refreshActivityBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.refreshIcon {
+  flex-shrink: 0;
+}
+
+.refreshIconSpin {
+  animation: spin 0.8s linear infinite;
+}
+
+.refreshError {
+  font-size: 0.78rem;
+  color: #b91c1c;
+  margin: -0.5rem 0 0.75rem;
+}
+
+.sectionBadge {
+  background: #f3f4f6;
+  color: #6b7280;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.15rem 0.45rem;
+  border-radius: 99px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ─── Repository activity tiles ──────────────────────── */
+.repoStatsRow {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.repoStatTile {
+  flex: 1;
+  min-width: 120px;
+  background: #F8FAFC;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.repoStatTileAccent {
+  border-left: 3px solid #38260B;
+}
+
+.repoStatLabel {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.repoStatValue {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1A2B3C;
+  line-height: 1.2;
+}
+
+/* ─── Commit heatmap ──────────────────────────────────── */
+.heatmapTitle {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 0.75rem;
+}
+
+.heatmapGrid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(5, 14px);
+  gap: 3px;
+  width: fit-content;
+}
+
+.heatmapCell {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+}
+
+.heatmapLevel0 { background: #f3f4f6; }
+.heatmapLevel1 { background: #d1fae5; }
+.heatmapLevel2 { background: #bbf7d0; }
+.heatmapLevel3 { background: #16a34a; }
+.heatmapLevel4 { background: #15803d; }
+
+.heatmapLegend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  color: #9ca3af;
+  justify-content: flex-end;
+  margin-top: 0.6rem;
+}
+
+/* ─── Linked documents ────────────────────────────────── */
+.docList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.docItem {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.docIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.docIconDoc { background: #1A2B3C; }
+.docIconSheet { background: #64748B; }
+.docIconSlides { background: #38260B; }
+.docIconForm { background: #64748B; }
+.docIconFile { background: #9ca3af; }
+
+.docBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.docName {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #111827;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.docMeta {
+  font-size: 0.72rem;
+  color: #9ca3af;
+  margin-top: 0.1rem;
+}
+
+.docOpenLink {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #1A2B3C;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.docOpenLink:hover {
+  text-decoration: underline;
+}

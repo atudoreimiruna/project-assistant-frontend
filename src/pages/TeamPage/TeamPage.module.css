@@ -1,7 +1,7 @@
 /* ─── Layout ─────────────────────────────────────────── */
 .page {
   min-height: 100vh;
-  background: #f4f7f5;
+  background: #F8FAFC;
   display: flex;
   flex-direction: column;
 }
@@ -29,7 +29,7 @@
 .logoIcon {
   width: 32px;
   height: 32px;
-  background: #0C3B2E;
+  background: #1A2B3C;
   border-radius: 7px;
   display: flex;
   align-items: center;
@@ -42,7 +42,7 @@
 .logoText {
   font-size: 1rem;
   font-weight: 700;
-  color: #0C3B2E;
+  color: #1A2B3C;
 }
 
 .navRight {
@@ -59,9 +59,9 @@
 .logoutBtn {
   font-size: 0.85rem;
   font-weight: 500;
-  color: #0C3B2E;
+  color: #1A2B3C;
   background: none;
-  border: 1px solid #c5d8c9;
+  border: 1px solid #c7cdd6;
   border-radius: 6px;
   padding: 0.35rem 0.75rem;
   cursor: pointer;
@@ -69,7 +69,7 @@
 }
 
 .logoutBtn:hover {
-  background: #f0f5f1;
+  background: #f0f2f5;
 }
 
 /* ─── Main ───────────────────────────────────────────── */
@@ -92,7 +92,7 @@
 .breadcrumbBack {
   background: none;
   border: none;
-  color: #0C3B2E;
+  color: #1A2B3C;
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
@@ -131,7 +131,7 @@
   width: 52px;
   height: 52px;
   border-radius: 12px;
-  background: #BB8A52;
+  background: #38260B;
   color: #fff;
   font-size: 1.4rem;
   font-weight: 700;
@@ -151,7 +151,7 @@
 .teamName {
   font-size: 1.6rem;
   font-weight: 700;
-  color: #0C3B2E;
+  color: #1A2B3C;
   margin: 0;
 }
 
@@ -166,7 +166,7 @@
 }
 
 .repoLink:hover {
-  color: #0C3B2E;
+  color: #1A2B3C;
   text-decoration: underline;
 }
 
@@ -185,7 +185,7 @@
 }
 
 .syncBtn {
-  background: #0C3B2E;
+  background: #1A2B3C;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -197,7 +197,7 @@
 }
 
 .syncBtn:hover:not(:disabled) {
-  background: #0a2e23;
+  background: #111c27;
 }
 
 .syncBtn:disabled {
@@ -260,7 +260,7 @@
 .statValue {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #0C3B2E;
+  color: #1A2B3C;
   line-height: 1;
 }
 
@@ -303,7 +303,7 @@
 .sectionTitle {
   font-size: 0.875rem;
   font-weight: 700;
-  color: #0C3B2E;
+  color: #1A2B3C;
   margin: 0 0 1rem;
   display: flex;
   align-items: center;
@@ -369,14 +369,14 @@
 }
 
 .sortBtn:hover {
-  border-color: #0C3B2E;
-  color: #0C3B2E;
+  border-color: #1A2B3C;
+  color: #1A2B3C;
 }
 
 .sortActive {
   background: #FFBA00;
   border-color: #FFBA00;
-  color: #0C3B2E !important;
+  color: #1A2B3C !important;
 }
 
 .table {
@@ -405,11 +405,11 @@
 }
 
 .trTop {
-  background: #fffbf0;
+  background: #fdf9f2;
 }
 
 .trTop:hover {
-  background: #fff8e5;
+  background: #fbf4e9;
 }
 
 .td {
@@ -454,7 +454,7 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: #BB8A52;
+  background: #38260B;
   color: #fff;
   font-size: 0.75rem;
   font-weight: 700;
@@ -496,7 +496,7 @@
 
 .scoreFill {
   height: 100%;
-  background: #6D9773;
+  background: #64748B;
   border-radius: 99px;
   transition: width 0.4s ease;
 }
@@ -539,7 +539,7 @@
   padding: 0.75rem;
   background: #f9fafb;
   border-radius: 6px;
-  border-left: 3px solid #6D9773;
+  border-left: 3px solid #64748B;
 }
 
 /* ─── Ask AI section ─────────────────────────────────── */
@@ -569,11 +569,11 @@
 }
 
 .askInput:focus {
-  border-color: #0C3B2E;
+  border-color: #1A2B3C;
 }
 
 .askBtn {
-  background: #0C3B2E;
+  background: #1A2B3C;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -586,7 +586,7 @@
 }
 
 .askBtn:hover:not(:disabled) {
-  background: #0f4d3c;
+  background: #1c2e40;
 }
 
 .askBtn:disabled {
@@ -602,11 +602,11 @@
 }
 
 .askChip {
-  background: #f0f5f1;
-  border: 1px solid #c5d8c9;
+  background: #f0f2f5;
+  border: 1px solid #c7cdd6;
   border-radius: 20px;
   font-size: 0.75rem;
-  color: #0C3B2E;
+  color: #1A2B3C;
   padding: 4px 10px;
   cursor: pointer;
   transition: background 0.15s;
@@ -614,7 +614,7 @@
 }
 
 .askChip:hover:not(:disabled) {
-  background: #dceee2;
+  background: #e1e4e9;
 }
 
 .askChip:disabled {
@@ -623,8 +623,8 @@
 }
 
 .askAnswer {
-  background: #f0f5f1;
-  border-left: 3px solid #0C3B2E;
+  background: #f0f2f5;
+  border-left: 3px solid #1A2B3C;
   padding: 10px 14px;
   border-radius: 0;
   margin-top: 4px;
@@ -633,7 +633,7 @@
 .askAnswerLabel {
   font-size: 0.7rem;
   font-weight: 700;
-  color: #0C3B2E;
+  color: #1A2B3C;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   margin-bottom: 6px;
@@ -700,7 +700,7 @@
 
 .milestoneMacroFill {
   height: 100%;
-  background: #6D9773;
+  background: #64748B;
   border-radius: 99px;
   transition: width 0.5s ease;
 }
@@ -747,6 +747,20 @@
   background: #e5e7eb;
   color: #6b7280;
   margin-top: 0.05rem;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 0.1s, background 0.12s, color 0.12s;
+}
+
+.milestoneCheck:hover:not(:disabled) {
+  transform: scale(1.1);
+}
+
+.milestoneCheck:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
 .milestoneComplete .milestoneCheck {
@@ -851,7 +865,7 @@
   width: 32px;
   height: 32px;
   border: 3px solid #e5e7eb;
-  border-top-color: #0C3B2E;
+  border-top-color: #1A2B3C;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }
@@ -891,9 +905,9 @@
 .addMemberToggle {
   font-size: 0.8rem;
   font-weight: 600;
-  color: #0C3B2E;
+  color: #1A2B3C;
   background: none;
-  border: 1.5px solid #c5d8c9;
+  border: 1.5px solid #c7cdd6;
   border-radius: 6px;
   padding: 0.3rem 0.7rem;
   cursor: pointer;
@@ -901,9 +915,31 @@
   white-space: nowrap;
 }
 
-.addMemberToggle:hover {
-  background: #f0f5f1;
-  border-color: #0C3B2E;
+.addMemberToggle:hover:not(:disabled) {
+  background: #f0f2f5;
+  border-color: #1A2B3C;
+}
+
+.addMemberToggle:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ─── Members section header actions row ─────────────── */
+.membersHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.reminderMsg {
+  font-size: 0.78rem;
+  color: #1A2B3C;
+  background: #f0f2f5;
+  border-radius: 6px;
+  padding: 0.5rem 0.7rem;
+  margin: -0.5rem 0 0.75rem;
 }
 
 /* ─── Add member form ────────────────────────────────── */
@@ -936,11 +972,11 @@
 
 .addInput:focus {
   outline: none;
-  border-color: #0C3B2E;
+  border-color: #1A2B3C;
 }
 
 .addSubmitBtn {
-  background: #0C3B2E;
+  background: #1A2B3C;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -953,7 +989,7 @@
 }
 
 .addSubmitBtn:hover:not(:disabled) {
-  background: #0a2e23;
+  background: #111c27;
 }
 
 .addSubmitBtn:disabled {
@@ -1099,11 +1135,11 @@
 
 .integrationInput:focus {
   outline: none;
-  border-color: #0C3B2E;
+  border-color: #1A2B3C;
 }
 
 .integrationBtn {
-  background: #0C3B2E;
+  background: #1A2B3C;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -1116,7 +1152,7 @@
 }
 
 .integrationBtn:hover:not(:disabled) {
-  background: #0a2e23;
+  background: #111c27;
 }
 
 .integrationBtn:disabled {
@@ -1147,7 +1183,7 @@
 }
 
 .integrationLinked a {
-  color: #0C3B2E;
+  color: #1A2B3C;
   text-decoration: none;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1162,9 +1198,9 @@
 .reSyncBtn {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #0C3B2E;
+  color: #1A2B3C;
   background: none;
-  border: 1px solid #c5d8c9;
+  border: 1px solid #c7cdd6;
   border-radius: 6px;
   padding: 0.2rem 0.6rem;
   cursor: pointer;
@@ -1174,7 +1210,7 @@
 }
 
 .reSyncBtn:hover:not(:disabled) {
-  background: #f0f5f1;
+  background: #f0f2f5;
 }
 
 .reSyncBtn:disabled {
@@ -1188,10 +1224,102 @@
   margin: 0;
 }
 
+/* ─── Refresh activity button ────────────────────────── */
+.refreshActivityWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.lastRefreshedText {
+  font-size: 0.72rem;
+  color: #9ca3af;
+  white-space: nowrap;
+}
+
+.refreshActivityBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1A2B3C;
+  background: none;
+  border: 1.5px solid #c7cdd6;
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+  white-space: nowrap;
+}
+
+.refreshActivityBtn:hover:not(:disabled) {
+  background: #f0f2f5;
+  border-color: #1A2B3C;
+}
+
+.refreshActivityBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.refreshIcon {
+  flex-shrink: 0;
+}
+
+.refreshIconSpin {
+  animation: spin 0.8s linear infinite;
+}
+
+.refreshError {
+  font-size: 0.78rem;
+  color: #b91c1c;
+  margin: -0.5rem 0 0.75rem;
+}
+
+/* ─── Auto-check milestones button ───────────────────── */
+.autoCheckBtn {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  color: #1A2B3C;
+  background: none;
+  border: 1.5px solid #c7cdd6;
+  border-radius: 6px;
+  padding: 0.25rem 0.6rem;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+  white-space: nowrap;
+}
+
+.autoCheckBtn:hover:not(:disabled) {
+  background: #f0f2f5;
+  border-color: #1A2B3C;
+}
+
+.autoCheckBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.autoCheckSummary {
+  font-size: 0.78rem;
+  color: #1A2B3C;
+  background: #f0f2f5;
+  border-radius: 6px;
+  padding: 0.5rem 0.7rem;
+  margin: -0.5rem 0 0.75rem;
+}
+
 /* ─── GitHub link in member row ───────────────────────── */
 .memberGithub {
   font-size: 0.72rem;
-  color: #0C3B2E;
+  color: #1A2B3C;
   text-decoration: none;
   display: block;
 }

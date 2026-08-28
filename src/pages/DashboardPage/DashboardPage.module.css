@@ -1,7 +1,7 @@
 /* ─── Layout ─────────────────────────────────────────── */
 .page {
   min-height: 100vh;
-  background: #f4f7f5;
+  background: #F8FAFC;
   display: flex;
   flex-direction: column;
 }
@@ -29,7 +29,7 @@
 .logoIcon {
   width: 32px;
   height: 32px;
-  background: #0C3B2E;
+  background: #1A2B3C;
   border-radius: 7px;
   display: flex;
   align-items: center;
@@ -42,7 +42,7 @@
 .logoText {
   font-size: 1rem;
   font-weight: 700;
-  color: #0C3B2E;
+  color: #1A2B3C;
 }
 
 .navRight {
@@ -59,9 +59,9 @@
 .logoutBtn {
   font-size: 0.85rem;
   font-weight: 500;
-  color: #0C3B2E;
+  color: #1A2B3C;
   background: none;
-  border: 1px solid #c5d8c9;
+  border: 1px solid #c7cdd6;
   border-radius: 6px;
   padding: 0.35rem 0.75rem;
   cursor: pointer;
@@ -69,7 +69,7 @@
 }
 
 .logoutBtn:hover {
-  background: #f0f5f1;
+  background: #f0f2f5;
 }
 
 /* ─── Main ───────────────────────────────────────────── */
@@ -92,7 +92,7 @@
 .pageTitle {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #0C3B2E;
+  color: #1A2B3C;
   margin: 0 0 0.3rem;
 }
 
@@ -142,8 +142,8 @@
 
 .filterSelect:hover,
 .filterSelect:focus {
-  border-color: #a8c8b0;
-  color: #0C3B2E;
+  border-color: #acb6c4;
+  color: #1A2B3C;
 }
 
 .filterBtn {
@@ -159,20 +159,20 @@
 }
 
 .filterBtn:hover {
-  background: #f0f5f1;
-  border-color: #a8c8b0;
-  color: #0C3B2E;
+  background: #f0f2f5;
+  border-color: #acb6c4;
+  color: #1A2B3C;
 }
 
 .filterActive {
-  background: #0C3B2E;
-  border-color: #0C3B2E;
+  background: #1A2B3C;
+  border-color: #1A2B3C;
   color: #fff;
 }
 
 .filterActive:hover {
-  background: #0f4d3c;
-  border-color: #0f4d3c;
+  background: #1c2e40;
+  border-color: #1c2e40;
   color: #fff;
 }
 
@@ -199,8 +199,8 @@
 }
 
 .card:hover {
-  box-shadow: 0 4px 20px rgba(12, 59, 46, 0.1);
-  border-color: #a8c8b0;
+  box-shadow: 0 4px 20px rgba(26, 43, 60, 0.1);
+  border-color: #acb6c4;
   transform: translateY(-2px);
 }
 
@@ -214,7 +214,7 @@
   width: 42px;
   height: 42px;
   border-radius: 10px;
-  background: #BB8A52;
+  background: #38260B;
   color: #fff;
   font-size: 1.2rem;
   font-weight: 700;
@@ -285,7 +285,7 @@
 .cardArrow {
   font-size: 0.8rem;
   font-weight: 600;
-  color: #0C3B2E;
+  color: #1A2B3C;
 }
 
 .createdAt {
@@ -312,7 +312,7 @@
   width: 32px;
   height: 32px;
   border: 3px solid #e5e7eb;
-  border-top-color: #0C3B2E;
+  border-top-color: #1A2B3C;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }
@@ -333,7 +333,7 @@
 /* ─── New course button ──────────────────────────────── */
 .newCourseBtn {
   flex-shrink: 0;
-  background: #0C3B2E;
+  background: #1A2B3C;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -346,7 +346,7 @@
 }
 
 .newCourseBtn:hover {
-  background: #0f4d3c;
+  background: #1c2e40;
 }
 
 /* ─── Modal overlay ──────────────────────────────────── */
@@ -380,7 +380,7 @@
 .modalTitle {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #0C3B2E;
+  color: #1A2B3C;
   margin: 0;
 }
 
@@ -435,7 +435,7 @@
 
 .input:focus,
 .textarea:focus {
-  border-color: #0C3B2E;
+  border-color: #1A2B3C;
 }
 
 .textarea {
@@ -483,7 +483,7 @@
 }
 
 .submitBtn {
-  background: #0C3B2E;
+  background: #1A2B3C;
   color: #fff;
   border: none;
   border-radius: 7px;
@@ -495,7 +495,7 @@
 }
 
 .submitBtn:hover:not(:disabled) {
-  background: #0f4d3c;
+  background: #1c2e40;
 }
 
 .submitBtn:disabled,

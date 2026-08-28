@@ -69,15 +69,35 @@ export interface ContributorPreview {
   githubUsername?: string;
   alreadyMember: boolean;
   possibleDuplicate?: string;
+  /** False when `email` is a non-deliverable GitHub noreply placeholder. */
+  hasRealEmail: boolean;
 }
 
 export interface ActivityLog {
   _id: string;
   teamId: string;
-  type?: string;
-  message?: string;
-  author?: string;
+  type: 'commit' | 'pr' | 'issue' | 'document';
+  studentEmail?: string;
+  description: string;
   timestamp: string;
+  metadata?: {
+    url?: string;
+    driveFileId?: string;
+    mimeType?: string;
+    [key: string]: unknown;
+  };
+}
+
+export interface MilestoneCheckResult {
+  milestoneId: string;
+  title: string;
+  reason: string;
+}
+
+export interface AutoCheckMilestonesResult {
+  checked: number;
+  newlyCompleted: MilestoneCheckResult[];
+  stillPending: MilestoneCheckResult[];
 }
 
 export const teamsApi = {
@@ -91,15 +111,28 @@ export const teamsApi = {
   getActivity: (teamId: string) => api.get<ActivityLog[]>(`/teams/${teamId}/activity`),
   syncGithub: (teamId: string) => api.post<{ ok: boolean }>(`/teams/${teamId}/sync-github`, {}),
   syncDrive: (teamId: string) => api.post<{ ok: boolean }>(`/teams/${teamId}/sync-drive`, {}),
+  syncDriveActivity: (teamId: string) =>
+    api.post<{ ok: boolean; result: { filesChecked: number; newActivity: number } }>(`/teams/${teamId}/sync-drive-activity`, {}),
   delete: (id: string) => api.delete<void>(`/teams/${id}`),
   previewContributors: (teamId: string, source: 'github' | 'drive') =>
-    api.get<ContributorPreview[]>(`/teams/${teamId}/preview-contributors?source=${source}`),
+    api.get<ContributorPreview[]>(`/teams/${teamId}/preview-contributors`, { params: { source } }),
   importContributors: (teamId: string, contributors: ContributorPreview[]) =>
     api.post<Team>(`/teams/${teamId}/import-contributors`, { contributors }),
   addStudent: (teamId: string, payload: AddStudentPayload) =>
     api.post<Student>(`/teams/${teamId}/students`, payload),
   removeStudent: (teamId: string, studentId: string) =>
     api.delete<void>(`/teams/${teamId}/students/${studentId}`),
+  setMilestoneCompleted: (teamId: string, milestoneId: string, completed: boolean) =>
+    api.put<Milestone>(`/teams/${teamId}/milestones/${milestoneId}`, { completed }),
+  getStudentActivity: (teamId: string, studentId: string) =>
+    api.get<ActivityLog[]>(`/teams/${teamId}/students/${studentId}/activity`),
+  sendReminder: (teamId: string) =>
+    api.post<{ ok: boolean; result: { studentsEmailed: number; failed: number; milestonesIncluded: number } }>(
+      `/teams/${teamId}/send-reminder`,
+      {},
+    ),
+  autoCheckMilestones: (teamId: string) =>
+    api.post<{ ok: boolean; result: AutoCheckMilestonesResult }>(`/teams/${teamId}/auto-check-milestones`, {}),
   ask: (teamId: string, query: string) =>
     api.post<{ answer: string }>(`/teams/${teamId}/ask`, { query }),
 };

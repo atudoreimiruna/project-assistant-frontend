@@ -1,7 +1,7 @@
 /* ─── Layout ─────────────────────────────────────────── */
 .page {
   min-height: 100vh;
-  background: #f4f7f5;
+  background: #F8FAFC;
   display: flex;
   flex-direction: column;
 }
@@ -29,7 +29,7 @@
 .logoIcon {
   width: 32px;
   height: 32px;
-  background: #0C3B2E;
+  background: #1A2B3C;
   border-radius: 7px;
   display: flex;
   align-items: center;
@@ -42,7 +42,7 @@
 .logoText {
   font-size: 1rem;
   font-weight: 700;
-  color: #0C3B2E;
+  color: #1A2B3C;
 }
 
 .navRight {
@@ -59,9 +59,9 @@
 .logoutBtn {
   font-size: 0.85rem;
   font-weight: 500;
-  color: #0C3B2E;
+  color: #1A2B3C;
   background: none;
-  border: 1px solid #c5d8c9;
+  border: 1px solid #c7cdd6;
   border-radius: 6px;
   padding: 0.35rem 0.75rem;
   cursor: pointer;
@@ -69,7 +69,7 @@
 }
 
 .logoutBtn:hover {
-  background: #f0f5f1;
+  background: #f0f2f5;
 }
 
 /* ─── Main ───────────────────────────────────────────── */
@@ -92,7 +92,7 @@
 .breadcrumbBack {
   background: none;
   border: none;
-  color: #0C3B2E;
+  color: #1A2B3C;
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
@@ -115,7 +115,7 @@
 .pageTitle {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #0C3B2E;
+  color: #1A2B3C;
   margin: 0 0 0.2rem;
 }
 
@@ -192,20 +192,20 @@
 }
 
 .filterBtn:hover {
-  border-color: #0C3B2E;
-  color: #0C3B2E;
+  border-color: #1A2B3C;
+  color: #1A2B3C;
 }
 
 .filterActive {
   background: #FFBA00;
   border-color: #FFBA00;
-  color: #0C3B2E !important;
+  color: #1A2B3C !important;
 }
 
 /* ─── Team grid ──────────────────────────────────────── */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 1rem;
 }
 
@@ -244,7 +244,7 @@
   width: 40px;
   height: 40px;
   border-radius: 10px;
-  background: #BB8A52;
+  background: #38260B;
   color: #fff;
   font-size: 1.1rem;
   font-weight: 700;
@@ -281,7 +281,7 @@
 }
 
 .repoLink:hover {
-  color: #0C3B2E;
+  color: #1A2B3C;
   text-decoration: underline;
 }
 
@@ -336,7 +336,7 @@
   padding: 0.6rem 0.75rem;
   background: #f9fafb;
   border-radius: 6px;
-  border-left: 3px solid #6D9773;
+  border-left: 3px solid #64748B;
 }
 
 /* ─── Milestone bar ──────────────────────────────────── */
@@ -385,7 +385,7 @@
 
 .progressFill {
   height: 100%;
-  background: #6D9773;
+  background: #64748B;
   border-radius: 99px;
   transition: width 0.4s ease;
 }
@@ -414,7 +414,7 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #BB8A52;
+  background: #38260B;
   color: #fff;
   font-size: 0.65rem;
   font-weight: 700;
@@ -514,10 +514,279 @@
   gap: 1rem;
 }
 
+/* ─── Header actions (export + new team) ─────────────── */
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.exportError {
+  font-size: 0.8rem;
+  color: #b91c1c;
+  margin: 0.5rem 0 0;
+}
+
+/* ─── Export all teams button ────────────────────────── */
+.exportBtn {
+  padding: 0.5rem 1.1rem;
+  background: none;
+  color: #1A2B3C;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 1.5px solid #c7cdd6;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.exportBtn:hover:not(:disabled) {
+  background: #f0f2f5;
+  border-color: #1A2B3C;
+}
+
+.exportBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ─── Course Milestones card ─────────────────────────── */
+.milestonesCard {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.sectionHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.sectionTitle {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1A2B3C;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sectionBadge {
+  background: #f3f4f6;
+  color: #6b7280;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.15rem 0.45rem;
+  border-radius: 99px;
+}
+
+.addMilestoneToggle {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1A2B3C;
+  background: none;
+  border: 1.5px solid #c7cdd6;
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.addMilestoneToggle:hover {
+  background: #f0f2f5;
+  border-color: #1A2B3C;
+}
+
+.milestoneForm {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.milestoneFormRow {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.milestoneFormInput {
+  flex: 1;
+  min-width: 140px;
+  padding: 0.4rem 0.65rem;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: #111827;
+  background: #fff;
+  transition: border-color 0.12s;
+}
+
+.milestoneFormDate {
+  padding: 0.4rem 0.65rem;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: #111827;
+  background: #fff;
+  transition: border-color 0.12s;
+}
+
+.milestoneFormInput:focus,
+.milestoneFormDate:focus {
+  outline: none;
+  border-color: #1A2B3C;
+}
+
+.milestoneFormSubmit {
+  background: #1A2B3C;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.12s;
+  white-space: nowrap;
+}
+
+.milestoneFormSubmit:hover:not(:disabled) {
+  background: #111c27;
+}
+
+.milestoneFormSubmit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.addErr {
+  font-size: 0.78rem;
+  color: #b91c1c;
+  margin: 0.5rem 0 0;
+}
+
+.emptyMilestonesText {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin: 0;
+}
+
+.milestoneMgmtList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.milestoneMgmtItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 8px;
+  background: #f9fafb;
+  border: 1px solid #f3f4f6;
+}
+
+.milestoneMgmtBody {
+  min-width: 0;
+  flex: 1;
+}
+
+.milestoneMgmtTitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.milestoneMgmtDesc {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 0.2rem;
+  line-height: 1.4;
+}
+
+.milestoneMgmtMeta {
+  font-size: 0.72rem;
+  color: #9ca3af;
+  margin-top: 0.3rem;
+}
+
+.milestoneMgmtActions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.milestoneEditBtn {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #1A2B3C;
+  background: none;
+  border: 1px solid #c7cdd6;
+  border-radius: 6px;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.12s;
+}
+
+.milestoneEditBtn:hover {
+  background: #f0f2f5;
+}
+
+.removeBtn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid #e5e7eb;
+  background: none;
+  color: #9ca3af;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+  flex-shrink: 0;
+}
+
+.removeBtn:hover:not(:disabled) {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #dc2626;
+}
+
+.removeBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* ─── New Team button ────────────────────────────────── */
 .newTeamBtn {
   padding: 0.5rem 1.1rem;
-  background: #0C3B2E;
+  background: #1A2B3C;
   color: #fff;
   font-size: 0.875rem;
   font-weight: 600;
@@ -530,7 +799,7 @@
 }
 
 .newTeamBtn:hover {
-  background: #0a3226;
+  background: #121e2a;
 }
 
 /* ─── Modal ──────────────────────────────────────────── */
@@ -565,7 +834,7 @@
 .modalTitle {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #0C3B2E;
+  color: #1A2B3C;
   margin: 0;
 }
 
@@ -641,7 +910,7 @@
 }
 
 .fieldInput:focus {
-  border-color: #0C3B2E;
+  border-color: #1A2B3C;
 }
 
 .fieldDivider {
@@ -694,7 +963,7 @@
 
 .modalSubmitBtn {
   padding: 0.5rem 1.25rem;
-  background: #0C3B2E;
+  background: #1A2B3C;
   color: #fff;
   border: none;
   border-radius: 7px;
@@ -705,7 +974,7 @@
 }
 
 .modalSubmitBtn:hover:not(:disabled) {
-  background: #0a3226;
+  background: #121e2a;
 }
 
 .modalSubmitBtn:disabled {
@@ -742,7 +1011,7 @@
   width: 32px;
   height: 32px;
   border: 3px solid #e5e7eb;
-  border-top-color: #0C3B2E;
+  border-top-color: #1A2B3C;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }

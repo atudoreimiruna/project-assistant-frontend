@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { coursesApi, type Course } from '../../api/courses';
+import { coursesApi, type Course, type CourseMilestone } from '../../api/courses';
 import { teamsApi, type Team, type TeamReport, type TeamStatus, type CreateTeamPayload, type ContributorPreview } from '../../api/teams';
 import { ApiError } from '../../api/client';
 import { ContributorsPreviewModal } from '../../components/ContributorsPreviewModal/ContributorsPreviewModal';
+import { safeHref } from '../../lib/safeUrl';
 import styles from './CoursePage.module.css';
 
 const STATUS_LABEL: Record<TeamStatus, string> = {
@@ -24,6 +25,10 @@ const CARD_MOD: Record<TeamStatus, string> = {
   AT_RISK: styles.cardAT_RISK,
   BLOCKED: styles.cardBLOCKED,
 };
+
+function fmtDate(iso: string) {
+  return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
 
 function StatusBadge({ status }: { status: TeamStatus }) {
   return (
@@ -64,6 +69,7 @@ function MilestoneBar({ milestones }: { milestones: Team['milestones'] }) {
 
 function TeamCard({ team, report, onClick, onDelete }: { team: Team; report: TeamReport | null; onClick: () => void; onDelete: () => void }) {
   const status = report?.status;
+  const repoHref = safeHref(team.githubRepo);
   const lastGenerated = report?.generatedAt
     ? new Date(report.generatedAt).toLocaleDateString('en-US', {
         month: 'short',
@@ -83,9 +89,9 @@ function TeamCard({ team, report, onClick, onDelete }: { team: Team; report: Tea
         <div className={styles.teamInitial}>{team.name.charAt(0).toUpperCase()}</div>
         <div className={styles.cardTitle}>
           <h3 className={styles.teamName}>{team.name}</h3>
-          {team.githubRepo ? (
+          {repoHref ? (
             <a
-              href={team.githubRepo}
+              href={repoHref}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.repoLink}
@@ -94,7 +100,7 @@ function TeamCard({ team, report, onClick, onDelete }: { team: Team; report: Tea
               <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
               </svg>
-              {team.githubRepo.replace('https://github.com/', '')}
+              {repoHref.replace('https://github.com/', '')}
             </a>
           ) : (
             <span className={styles.noRepo}>No repo linked</span>
@@ -190,6 +196,173 @@ function SummaryStrip({ reports }: { reports: (TeamReport | null)[] }) {
   );
 }
 
+/* ─── Course Milestones ──────────────────────────────────── */
+// Created here on the course page and applied to every team in the course;
+// each team then tracks its own "completed" state independently on its page.
+
+interface MilestonesManagerProps {
+  courseId: string;
+  milestones: CourseMilestone[];
+  onChanged: () => void;
+}
+
+function MilestonesManager({ courseId, milestones, onChanged }: MilestonesManagerProps) {
+  const [showForm, setShowForm] = useState(false);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [dueDate, setDueDate] = useState('');
+  const [status, setStatus] = useState<'idle' | 'saving'>('idle');
+  const [formErr, setFormErr] = useState('');
+  const [removingId, setRemovingId] = useState<string | null>(null);
+
+  function resetForm() {
+    setEditingId(null);
+    setTitle('');
+    setDescription('');
+    setDueDate('');
+    setFormErr('');
+  }
+
+  function startAdd() {
+    resetForm();
+    setShowForm(true);
+  }
+
+  function startEdit(m: CourseMilestone) {
+    setEditingId(m._id);
+    setTitle(m.title);
+    setDescription(m.description ?? '');
+    setDueDate(m.dueDate.slice(0, 10));
+    setFormErr('');
+    setShowForm(true);
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!title.trim() || !dueDate) return;
+    setStatus('saving');
+    setFormErr('');
+    try {
+      const payload = { title: title.trim(), description: description.trim() || undefined, dueDate };
+      if (editingId) {
+        await coursesApi.updateMilestone(courseId, editingId, payload);
+      } else {
+        await coursesApi.createMilestone(courseId, payload);
+      }
+      setShowForm(false);
+      resetForm();
+      onChanged();
+    } catch (err) {
+      setFormErr(err instanceof ApiError ? err.message : 'Failed to save milestone.');
+    } finally {
+      setStatus('idle');
+    }
+  }
+
+  async function handleDelete(m: CourseMilestone) {
+    if (!confirm(`Delete milestone "${m.title}"? This removes it from every team in the course.`)) return;
+    setRemovingId(m._id);
+    try {
+      await coursesApi.deleteMilestone(courseId, m._id);
+      onChanged();
+    } catch {
+      // surfaced centrally by the response interceptor; milestone stays listed
+    } finally {
+      setRemovingId(null);
+    }
+  }
+
+  const sorted = [...milestones].sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
+
+  return (
+    <section className={styles.milestonesCard}>
+      <div className={styles.sectionHeaderRow}>
+        <h2 className={styles.sectionTitle}>
+          Course Milestones
+          <span className={styles.sectionBadge}>{milestones.length}</span>
+        </h2>
+        <button
+          className={styles.addMilestoneToggle}
+          onClick={() => (showForm ? setShowForm(false) : startAdd())}
+        >
+          {showForm ? '✕ Cancel' : '+ Add milestone'}
+        </button>
+      </div>
+
+      {showForm && (
+        <form className={styles.milestoneForm} onSubmit={handleSubmit}>
+          <div className={styles.milestoneFormRow}>
+            <input
+              className={styles.milestoneFormInput}
+              placeholder="Title *"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+              autoFocus
+            />
+            <input
+              className={styles.milestoneFormInput}
+              placeholder="Description (optional)"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <input
+              className={styles.milestoneFormDate}
+              type="date"
+              value={dueDate}
+              onChange={(e) => setDueDate(e.target.value)}
+              required
+            />
+            <button
+              type="submit"
+              className={styles.milestoneFormSubmit}
+              disabled={status === 'saving' || !title.trim() || !dueDate}
+            >
+              {status === 'saving' ? 'Saving…' : editingId ? 'Save' : 'Add'}
+            </button>
+          </div>
+          {formErr && <p className={styles.addErr}>{formErr}</p>}
+        </form>
+      )}
+
+      {milestones.length === 0 && !showForm && (
+        <p className={styles.emptyMilestonesText}>
+          No course milestones yet. Add one and it'll apply to every team — each team tracks its own progress.
+        </p>
+      )}
+
+      {sorted.length > 0 && (
+        <ul className={styles.milestoneMgmtList}>
+          {sorted.map((m) => (
+            <li key={m._id} className={styles.milestoneMgmtItem}>
+              <div className={styles.milestoneMgmtBody}>
+                <div className={styles.milestoneMgmtTitle}>{m.title}</div>
+                {m.description && <div className={styles.milestoneMgmtDesc}>{m.description}</div>}
+                <div className={styles.milestoneMgmtMeta}>Due {fmtDate(m.dueDate)}</div>
+              </div>
+              <div className={styles.milestoneMgmtActions}>
+                <button className={styles.milestoneEditBtn} onClick={() => startEdit(m)} title="Edit milestone">
+                  Edit
+                </button>
+                <button
+                  className={styles.removeBtn}
+                  onClick={() => handleDelete(m)}
+                  disabled={removingId === m._id}
+                  title="Delete milestone"
+                  aria-label={`Delete ${m.title}`}
+                >
+                  {removingId === m._id ? '…' : '✕'}
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  );
+}
+
 /* ─── Create Team Modal ──────────────────────────────────── */
 
 interface CreateTeamModalProps {
@@ -204,7 +377,7 @@ function CreateTeamModal({ courseId, onCreated, onClose }: CreateTeamModalProps)
   const [googleSheetsUrl, setGoogleSheetsUrl] = useState('');
   const [googlePresentationUrl, setGooglePresentationUrl] = useState('');
   const [googleDocsUrl, setGoogleDocsUrl] = useState('');
-  const [status, setStatus] = useState<'idle' | 'saving' | 'err'>('idle');
+  const [status, setStatus] = useState<'idle' | 'saving'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
   async function handleSubmit(e: React.FormEvent) {
@@ -226,7 +399,6 @@ function CreateTeamModal({ courseId, onCreated, onClose }: CreateTeamModalProps)
       onCreated(team);
     } catch (err) {
       setErrorMsg(err instanceof ApiError ? err.message : 'Failed to create team.');
-      setStatus('err');
     } finally {
       setStatus('idle');
     }
@@ -348,7 +520,7 @@ export function CoursePage() {
 
   const [course, setCourse] = useState<Course | null>(null);
   const [teams, setTeams] = useState<Team[]>([]);
-  const [reports, setReports] = useState<(TeamReport | null)[]>([]);
+  const [reports, setReports] = useState<Record<string, TeamReport | null>>({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [filter, setFilter] = useState<TeamStatus | 'ALL'>('ALL');
@@ -358,6 +530,8 @@ export function CoursePage() {
     source: 'github' | 'drive';
     contributors: ContributorPreview[];
   } | null>(null);
+  const [isExporting, setIsExporting] = useState(false);
+  const [exportError, setExportError] = useState('');
 
   useEffect(() => {
     if (!id) return;
@@ -380,7 +554,12 @@ export function CoursePage() {
           setCourse(c);
           setTeams(fetchedTeams);
           setReports(
-            reportResults.map((r) => (r.status === 'fulfilled' ? r.value : null)),
+            Object.fromEntries(
+              fetchedTeams.map((t, i) => {
+                const r = reportResults[i];
+                return [t._id, r.status === 'fulfilled' ? r.value : null];
+              }),
+            ),
           );
         }
       } catch (err) {
@@ -397,7 +576,7 @@ export function CoursePage() {
 
   async function handleTeamCreated(team: Team) {
     setTeams((prev) => [...prev, team]);
-    setReports((prev) => [...prev, null]);
+    setReports((prev) => ({ ...prev, [team._id]: null }));
     setShowCreateModal(false);
 
     // Immediately preview contributors if a GitHub repo or Drive folder was linked
@@ -419,31 +598,56 @@ export function CoursePage() {
     setContributorsModal(null);
   }
 
+  // Downloads a single .xlsx workbook covering every team in the course —
+  // members, per-member contribution and first/last activity, one sheet per
+  // team plus a course-wide summary sheet.
+  async function handleExportTeams() {
+    if (!id) return;
+    setIsExporting(true);
+    setExportError('');
+    try {
+      const dateStr = new Date().toISOString().slice(0, 10);
+      const safeTitle = (course?.title ?? 'course').replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '').toLowerCase() || 'course';
+      await coursesApi.exportTeams(id, `${safeTitle}_teams_export_${dateStr}.xlsx`);
+    } catch {
+      setExportError('Failed to export teams. Try again.');
+    } finally {
+      setIsExporting(false);
+    }
+  }
+
+  // Lightweight reload after a course milestone is added/edited/deleted —
+  // both the course (milestone list) and every team (their linked copies,
+  // shown via MilestoneBar on each card) can change, without a full spinner.
+  async function refetchCourseAndTeams() {
+    if (!id) return;
+    try {
+      const [c, fetchedTeams] = await Promise.all([coursesApi.getById(id), teamsApi.getByCourse(id)]);
+      setCourse(c);
+      setTeams(fetchedTeams);
+    } catch {
+      // silent
+    }
+  }
+
   async function handleTeamDeleted(teamId: string) {
     if (!confirm('Delete this team? This cannot be undone.')) return;
     try {
       await teamsApi.delete(teamId);
-      setTeams((prev) => {
-        const idx = prev.findIndex((t) => t._id === teamId);
-        if (idx === -1) return prev;
-        const next = [...prev];
-        next.splice(idx, 1);
-        return next;
-      });
+      setTeams((prev) => prev.filter((t) => t._id !== teamId));
       setReports((prev) => {
-        const idx = teams.findIndex((t) => t._id === teamId);
-        if (idx === -1) return prev;
-        const next = [...prev];
-        next.splice(idx, 1);
+        const next = { ...prev };
+        delete next[teamId];
         return next;
       });
     } catch {
-      // silently fail — team stays in list
+      // Message already surfaced by the response interceptor; the team simply
+      // stays in the list.
     }
   }
 
   const filteredPairs = teams
-    .map((team, i) => ({ team, report: reports[i] ?? null }))
+    .map((team) => ({ team, report: reports[team._id] ?? null }))
     .filter(({ report }) =>
       filter === 'ALL' ? true : report?.status === filter,
     );
@@ -493,17 +697,38 @@ export function CoursePage() {
                   )}
                 </div>
                 {teams.length > 0 && (
-                  <button
-                    className={styles.newTeamBtn}
-                    onClick={() => setShowCreateModal(true)}
-                  >
-                    + New Team
-                  </button>
+                  <div className={styles.headerActions}>
+                    <button
+                      className={styles.exportBtn}
+                      onClick={handleExportTeams}
+                      disabled={isExporting}
+                      title="Download an .xlsx with every team's members, contribution and activity"
+                    >
+                      {isExporting ? 'Exporting…' : '⬇ Export all teams'}
+                    </button>
+                    <button
+                      className={styles.newTeamBtn}
+                      onClick={() => setShowCreateModal(true)}
+                    >
+                      + New Team
+                    </button>
+                  </div>
                 )}
               </div>
+              {exportError && <p className={styles.exportError}>{exportError}</p>}
             </div>
 
-            {teams.length > 0 && <SummaryStrip reports={reports} />}
+            {course && (
+              <MilestonesManager
+                courseId={course._id}
+                milestones={course.milestones}
+                onChanged={refetchCourseAndTeams}
+              />
+            )}
+
+            {teams.length > 0 && (
+              <SummaryStrip reports={teams.map((t) => reports[t._id] ?? null)} />
+            )}
 
             {/* Filters */}
             {teams.length > 0 && (
